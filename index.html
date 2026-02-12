@@ -1,43 +1,92 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Budes moja valentinka?</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Be My Valentine?</title>
+
 <style>
 body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #ff9ecf, #ffcce6);
+  font-family: Arial, sans-serif;
   text-align: center;
-  font-family: Arial;
-  background-color: #ffe6f0;
+  overflow: hidden;
+}
+
+h1 {
+  font-size: 28px;
+  padding: 20px;
+}
+
+.buttons {
+  position: relative;
+  width: 100%;
+  height: 200px;
 }
 
 button {
-  padding: 15px 30px;
+  padding: 15px 25px;
   font-size: 18px;
+  border: none;
+  border-radius: 30px;
   margin: 10px;
   cursor: pointer;
-  position: relative;
+}
+
+#yesBtn {
+  background-color: #ff4d88;
+  color: white;
+}
+
+#noBtn {
+  background-color: #666;
+  color: white;
+  position: absolute;
 }
 </style>
 </head>
 
 <body>
 
-<h1>Budeš moja valentínka? ❤️</h1>
+<h1>Will you be my Valentine? ❤️</h1>
 
-<button onclick="alert('YAYYYY 💕 Milujem ťa!!')">Ano 💖</button>
-<button id="noBtn">Nie 😢</button>
+<div class="buttons">
+  <button id="yesBtn">YES 💖</button>
+  <button id="noBtn">NO 😢</button>
+</div>
 
 <script>
 const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
 
-noBtn.addEventListener("mouseover", function() {
-  const x = Math.random() * 300;
-  const y = Math.random() * 300;
-  noBtn.style.position = "absolute";
-  noBtn.style.left = x + "px";
-  noBtn.style.top = y + "px";
+function moveButton() {
+  const maxX = window.innerWidth - 100;
+  const maxY = window.innerHeight - 100;
+
+  const randomX = Math.random() * maxX;
+  const randomY = Math.random() * maxY;
+
+  noBtn.style.left = randomX + "px";
+  noBtn.style.top = randomY + "px";
+}
+
+noBtn.addEventListener("click", function(event) {
+  event.preventDefault();
+  moveButton();
+});
+
+yesBtn.addEventListener("click", function() {
+  document.body.innerHTML = `
+    <h1 style="font-size:32px;">YAYYYY 💕</h1>
+    <p style="font-size:22px;">Best decision ever 😌❤️</p>
+  `;
 });
 </script>
 
 </body>
 </html>
-
